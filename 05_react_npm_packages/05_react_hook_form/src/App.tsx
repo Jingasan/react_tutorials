@@ -24,7 +24,7 @@ const schema = z.object({
     .string()
     .min(1, { message: "1文字以上で入力してください。" })
     .max(30, { message: "30文字以下で入力してください。" }),
-  sex: z.enum(["man", "woman"], { message: "選択してください。" }),
+  sex: z.enum(["man", "woman"], { message: "性別を選択してください。" }),
   email: z.string().email({ message: "無効なメールアドレスです。" }),
   phone: z
     .string()
@@ -49,6 +49,7 @@ const schema = z.object({
       // 簡易的な日付の文字列変換処理です
       return new Date(`${year}-${month}-${day}`).toISOString();
     }),
+  plan: z.coerce.number({ message: "プランを選択してください。" }),
   password: z
     .string()
     .min(1, { message: "8-16桁の英大文字、英小文字、数字で入力してください。" })
@@ -63,6 +64,25 @@ const schema = z.object({
 type Input = z.input<typeof schema>;
 type Output = z.output<typeof schema>;
 
+const plans = [
+  {
+    code: 1,
+    name: "Free",
+  },
+  {
+    code: 2,
+    name: "Personal",
+  },
+  {
+    code: 3,
+    name: "Family",
+  },
+  {
+    code: 4,
+    name: "Business",
+  },
+];
+
 const App: React.FC = () => {
   // useFormの型引数に変換前と変換後の型を渡す
   const {
@@ -75,6 +95,7 @@ const App: React.FC = () => {
       sex: undefined,
       email: undefined,
       phone: undefined,
+      plan: undefined,
       birthday: {
         year: undefined,
         month: undefined,
@@ -84,7 +105,7 @@ const App: React.FC = () => {
     resolver: zodResolver(schema),
   });
 
-  // Zodスキーマのパース後（RHFのバリデーション通過後）は変換後の型になる
+  // 登録ボタン押下時(zodによるバリデーション後に呼ばれる)
   const onSubmit = handleSubmit((input: Output) => {
     console.log(input);
   });
@@ -170,6 +191,22 @@ const App: React.FC = () => {
           )}
           {errors.birthday?.day?.message && (
             <div style={{ color: "red" }}>{errors.birthday?.day?.message}</div>
+          )}
+        </div>
+        {/* 契約プランの選択項目 */}
+        <div style={{ padding: "10px" }}>
+          <div>契約プラン*</div>
+          <select {...register("plan")}>
+            {plans.map((pref) => {
+              return (
+                <option key={pref.code} value={pref.code}>
+                  {pref.name}
+                </option>
+              );
+            })}
+          </select>
+          {errors.plan?.message && (
+            <div style={{ color: "red" }}>{errors.plan.message}</div>
           )}
         </div>
         {/* パスワードの入力項目 */}
