@@ -2,8 +2,6 @@
  * react-dropzone
  * ファイルのドラッグアンドドロップ領域を実装するライブラリ
  * https://react-dropzone.js.org/
- *
- * ChromePickerコンポーネントで色を選択させることができる。
  */
 import React from "react";
 import { useDropzone } from "react-dropzone";
