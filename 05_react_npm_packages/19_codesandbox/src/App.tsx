@@ -27,7 +27,6 @@ export function add(a: number, b: number) {
 `,
         },
       }}
-      //   options={{ openPaths: ["/App.tsx", "/utils.ts"] }}
     />
   );
 }
