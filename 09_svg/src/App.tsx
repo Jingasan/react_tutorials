@@ -1,7 +1,7 @@
 /**
  * SVG
  */
-import React, { SVGProps } from "react";
+import React, { forwardRef, SVGProps } from "react";
 
 /**
  * ゴミ箱アイコンコンポーネントのProps
@@ -357,6 +357,98 @@ export const AccountCircle = ({
 };
 
 /**
+ * メニューアイコンコンポーネント
+ * @returns
+ */
+export const MenuIcon = () => {
+  return (
+    <div className="h-6 w-6 cursor-pointer select-none hover:opacity-80">
+      <svg
+        width="100%"
+        height="100%"
+        viewBox="0 0 40 41"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g filter="url(#filter0_d_271_72366)">
+          <rect width="40" height="40" rx="4" fill="white" />
+          <path
+            d="M18.2 27.2H29.6M10.4 20H29.6M10.4 12.8H29.6"
+            stroke="#2E78E8"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+          <rect
+            x="1"
+            y="1"
+            width="38"
+            height="38"
+            rx="3"
+            stroke="#2E78E8"
+            strokeWidth="2"
+          />
+        </g>
+        <defs>
+          <filter
+            id="filter0_d_271_72366"
+            x="0"
+            y="0"
+            width="40"
+            height="41"
+            filterUnits="userSpaceOnUse"
+            colorInterpolationFilters="sRGB"
+          >
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
+            <feColorMatrix
+              in="SourceAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              result="hardAlpha"
+            />
+            <feOffset dy="1" />
+            <feComposite in2="hardAlpha" operator="out" />
+            <feColorMatrix
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"
+            />
+            <feBlend
+              mode="normal"
+              in2="BackgroundImageFix"
+              result="effect1_dropShadow_271_72366"
+            />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="effect1_dropShadow_271_72366"
+              result="shape"
+            />
+          </filter>
+        </defs>
+      </svg>
+    </div>
+  );
+};
+
+export const HelpIcon = forwardRef<SVGSVGElement, Props>(
+  ({ className, ...rest }: Props, ref) => {
+    return (
+      <svg
+        ref={ref}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 -960 960 960"
+        fill="currentColor"
+        width="24"
+        height="24"
+        className={className}
+        {...rest}
+      >
+        <path d="M478-240q21 0 35.5-14.5T528-290q0-21-14.5-35.5T478-340q-21 0-35.5 14.5T428-290q0 21 14.5 35.5T478-240Zm-36-154h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342-618l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506-526q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+      </svg>
+    );
+  }
+);
+
+/**
  * 親コンポーネント
  * @returns
  */
@@ -374,6 +466,8 @@ const App: React.FC = () => {
       <VehicleInformationIcon />
       <VehicleUsagesRecordIcon />
       <AccountCircle />
+      <HelpIcon />
+      <MenuIcon />
     </div>
   );
 };
