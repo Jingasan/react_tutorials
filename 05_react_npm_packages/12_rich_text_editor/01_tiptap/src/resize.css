@@ -1,0 +1,15 @@
+/* styles/resizable.css */
+.react-resizable {
+  position: relative;
+}
+
+.react-resizable-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 0;
+  right: 0;
+  background: #ddd;
+  border: 1px solid #999;
+  cursor: se-resize;
+}
