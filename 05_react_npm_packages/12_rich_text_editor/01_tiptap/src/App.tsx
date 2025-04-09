@@ -1,3 +1,9 @@
+/**
+ * tiptap
+ * React専用の編集エディタ(wysiwyg)ライブラリ
+ * https://tiptap.dev/docs
+ * https://tiptap.dev/docs/examples
+ */
 import { useEditor, EditorContent, Editor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { Bold } from "@tiptap/extension-bold";
